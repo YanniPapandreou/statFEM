@@ -60,7 +60,8 @@ def kernMat(k,grid,parallel=True,translation_inv = False):
         num_cores = multiprocessing.cpu_count()
         results = Parallel(n_jobs=num_cores)(delayed(processInput)(i) for i in range(n))
 
-        for (i,v) in enumerate(results[0:n-1]):
+        #for (i,v) in enumerate(results[0:n-1]):
+        for (i,v) in enumerate(results):  # is this correct???
             K[i,i:] = v
 
         K = K + K.T - np.diag(K.diagonal())
