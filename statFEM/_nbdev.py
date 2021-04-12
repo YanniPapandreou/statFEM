@@ -3,7 +3,8 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"mean_assembler": "00_oneDim.ipynb",
-         "kernMat": "00_oneDim.ipynb"}
+         "kernMat": "00_oneDim.ipynb",
+         "BigPhiMat": "00_oneDim.ipynb"}
 
 modules = ["oneDim.py"]
 
