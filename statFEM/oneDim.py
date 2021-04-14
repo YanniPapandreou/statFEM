@@ -3,7 +3,7 @@
 __all__ = ['mean_assembler', 'kernMat', 'BigPhiMat', 'cov_assembler']
 
 # Cell
-from fenics import *
+from dolfin import *
 import numpy as np
 from scipy import integrate
 from scipy.spatial.distance import cdist
