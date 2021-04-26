@@ -7,7 +7,8 @@ index = {"mean_assembler": "00_oneDim.ipynb",
          "BigPhiMat": "00_oneDim.ipynb",
          "cov_assembler": "00_oneDim.ipynb",
          "m_post": "00_oneDim.ipynb",
-         "sample_gp": "00_oneDim.ipynb"}
+         "sample_gp": "00_oneDim.ipynb",
+         "gen_sensor": "00_oneDim.ipynb"}
 
 modules = ["oneDim.py"]
 
