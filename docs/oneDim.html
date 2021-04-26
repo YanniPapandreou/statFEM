@@ -110,7 +110,7 @@ $$u(x)=\frac{1}{2}x(1-x)$$
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="mean_assembler" class="doc_header"><code>mean_assembler</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L18" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>mean_assembler</code>(<strong><code>h</code></strong>, <strong><code>f_bar</code></strong>)</p>
+<h4 id="mean_assembler" class="doc_header"><code>mean_assembler</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>mean_assembler</code>(<strong><code>h</code></strong>, <strong><code>f_bar</code></strong>)</p>
 </blockquote>
 <p>This function assembles the mean for the FEM prior for our 1-D problem</p>
 
@@ -319,7 +319,7 @@ $$\Sigma_2=\boldsymbol{\Phi}^{T}B\boldsymbol{\Phi}$$
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="kernMat" class="doc_header"><code>kernMat</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L51" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>kernMat</code>(<strong><code>k</code></strong>, <strong><code>grid</code></strong>, <strong><code>parallel</code></strong>=<em><code>True</code></em>, <strong><code>translation_inv</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="kernMat" class="doc_header"><code>kernMat</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>kernMat</code>(<strong><code>k</code></strong>, <strong><code>grid</code></strong>, <strong><code>parallel</code></strong>=<em><code>True</code></em>, <strong><code>translation_inv</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Function to compute the covariance matrix K corresponding to the covariance kernel k on a grid. This matrix has ijth entry K_ij=k(x_i,x_j) where x_i is the ith point of the grid.</p>
 
@@ -405,7 +405,7 @@ $$\Sigma_2=\boldsymbol{\Phi}^{T}B\boldsymbol{\Phi}$$
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="BigPhiMat" class="doc_header"><code>BigPhiMat</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BigPhiMat</code>(<strong><code>J</code></strong>, <strong><code>grid</code></strong>)</p>
+<h4 id="BigPhiMat" class="doc_header"><code>BigPhiMat</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L96" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>BigPhiMat</code>(<strong><code>J</code></strong>, <strong><code>grid</code></strong>)</p>
 </blockquote>
 <p>Function to compute the Phi matrix.</p>
 
@@ -458,7 +458,7 @@ $$\Sigma_2=\boldsymbol{\Phi}^{T}B\boldsymbol{\Phi}$$
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cov_assembler" class="doc_header"><code>cov_assembler</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cov_assembler</code>(<strong><code>J</code></strong>, <strong><code>k_f</code></strong>, <strong><code>grid</code></strong>, <strong><code>parallel</code></strong>, <strong><code>translation_inv</code></strong>)</p>
+<h4 id="cov_assembler" class="doc_header"><code>cov_assembler</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cov_assembler</code>(<strong><code>J</code></strong>, <strong><code>k_f</code></strong>, <strong><code>grid</code></strong>, <strong><code>parallel</code></strong>, <strong><code>translation_inv</code></strong>)</p>
 </blockquote>
 <p>Function to assemble the approximate FEM covariance matrix on the reference grid.</p>
 
@@ -704,7 +704,7 @@ $$m^{(i)}_{u|\mathbf{v}}(x)=m_{i}(x) - \mathbf{c}^{(i)}(x)^{T}B_{\epsilon,i}^{-1
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="m_post" class="doc_header"><code>m_post</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L193" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>m_post</code>(<strong><code>x</code></strong>, <strong><code>m</code></strong>, <strong><code>c</code></strong>, <strong><code>v</code></strong>, <strong><code>Y</code></strong>, <strong><code>B</code></strong>)</p>
+<h4 id="m_post" class="doc_header"><code>m_post</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>m_post</code>(<strong><code>x</code></strong>, <strong><code>m</code></strong>, <strong><code>c</code></strong>, <strong><code>v</code></strong>, <strong><code>Y</code></strong>, <strong><code>B</code></strong>)</p>
 </blockquote>
 <p>This function evalutes the posterior mean at the point x.</p>
 
@@ -810,7 +810,7 @@ $$m^{(i)}_{u|\mathbf{v}}(x)=m_{i}(x) - \mathbf{c}^{(i)}(x)^{T}B_{\epsilon,i}^{-1
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="sample_gp" class="doc_header"><code>sample_gp</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L205" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sample_gp</code>(<strong><code>n_sim</code></strong>, <strong><code>m</code></strong>, <strong><code>k</code></strong>, <strong><code>grid</code></strong>, <strong><code>par</code></strong>=<em><code>False</code></em>, <strong><code>trans</code></strong>=<em><code>True</code></em>, <strong><code>tol</code></strong>=<em><code>1e-09</code></em>)</p>
+<h4 id="sample_gp" class="doc_header"><code>sample_gp</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L206" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>sample_gp</code>(<strong><code>n_sim</code></strong>, <strong><code>m</code></strong>, <strong><code>k</code></strong>, <strong><code>grid</code></strong>, <strong><code>par</code></strong>=<em><code>False</code></em>, <strong><code>trans</code></strong>=<em><code>True</code></em>, <strong><code>tol</code></strong>=<em><code>1e-09</code></em>)</p>
 </blockquote>
 <p>Function to sample a GP with mean m and cov k on a grid.</p>
 
@@ -897,7 +897,7 @@ $$m^{(i)}_{u|\mathbf{v}}(x)=m_{i}(x) - \mathbf{c}^{(i)}(x)^{T}B_{\epsilon,i}^{-1
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="gen_sensor" class="doc_header"><code>gen_sensor</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L230" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>gen_sensor</code>(<strong><code>ε</code></strong>, <strong><code>m</code></strong>, <strong><code>k</code></strong>, <strong><code>Y</code></strong>, <strong><code>u_quad</code></strong>, <strong><code>grid</code></strong>, <strong><code>par</code></strong>=<em><code>False</code></em>, <strong><code>trans</code></strong>=<em><code>True</code></em>, <strong><code>tol</code></strong>=<em><code>1e-09</code></em>, <strong><code>maxiter</code></strong>=<em><code>50</code></em>, <strong><code>require_f</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="gen_sensor" class="doc_header"><code>gen_sensor</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L231" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>gen_sensor</code>(<strong><code>ε</code></strong>, <strong><code>m</code></strong>, <strong><code>k</code></strong>, <strong><code>Y</code></strong>, <strong><code>u_quad</code></strong>, <strong><code>grid</code></strong>, <strong><code>par</code></strong>=<em><code>False</code></em>, <strong><code>trans</code></strong>=<em><code>True</code></em>, <strong><code>tol</code></strong>=<em><code>1e-09</code></em>, <strong><code>maxiter</code></strong>=<em><code>50</code></em>, <strong><code>require_f</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Function to generate noisy sensor observations of the solution u on a sensor grid Y.</p>
 
@@ -1037,6 +1037,187 @@ $$u(x)=\int_{0}^{1}G(x,y)f(y)\mathrm{d}y=(1-x)\int_{0}^{x}yf(y)\mathrm{d}y+x\int
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The next bit of code needed in order to compute the difference between the posterior means is a way of comparing the two different mean functions. One possible solution is to overload the <code>UserExpression</code> class in FEniCS to create custom FEniCS expressions from user defined functions. This will allow us to use our function <a href="/statFEM/oneDim.html#m_post"><code>m_post</code></a> together with <code>errornorm</code> from FEniCS to compute the L2 norm of the difference. We thus, create a class called <a href="/statFEM/oneDim.html#MyExpression"><code>MyExpression</code></a>.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="MyExpression" class="doc_header"><code>class</code> <code>MyExpression</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L260" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MyExpression</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwargs</code></strong>) :: <code>UserExpression</code></p>
+</blockquote>
+<p>Class to allow users to user their own functions to create a FEniCS UserExpression.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will now demonstrate how this works, building on the sensor observation example above.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">μ_true</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;0.5*x[0]*(1-x[0])&#39;</span><span class="p">,</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">C_true_s</span> <span class="o">=</span> <span class="n">kernMat</span><span class="p">(</span><span class="n">c_u</span><span class="p">,</span><span class="n">Y</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+<span class="k">def</span> <span class="nf">c_u_vect</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c_u</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y_i</span><span class="p">)</span> <span class="k">for</span> <span class="n">y_i</span> <span class="ow">in</span> <span class="n">Y</span><span class="p">])</span>
+<span class="c1"># set up matrix B for posterior</span>
+<span class="n">B_true</span> <span class="o">=</span> <span class="p">(</span><span class="n">ϵ</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="n">C_true_s</span>
+
+<span class="c1"># compute the true posterior mean</span>
+<span class="k">def</span> <span class="nf">true_post_mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">m_post</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">μ_true</span><span class="p">,</span><span class="n">c_u_vect</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">B_true</span><span class="p">)</span>
+    
+<span class="c1"># set up MyExpression object</span>
+<span class="n">μ_true_post</span> <span class="o">=</span> <span class="n">MyExpression</span><span class="p">()</span>
+<span class="n">μ_true_post</span><span class="o">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">true_post_mean</span>
+<span class="n">μ_true_post</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+${w_h^75}$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>μ_true_post</code> now works like a usual FEniCS expression/function. We can evaluate it at a point:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">μ_true_post</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\displaystyle 0.107402172626009$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or even evaluate it on the nodes of a FEniCS mesh:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">μ_true_post</span><span class="o">.</span><span class="n">compute_vertex_values</span><span class="p">(</span><span class="n">mesh</span><span class="o">=</span><span class="n">UnitIntervalMesh</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0.        , 0.08179325, 0.12278251, 0.12279555, 0.08181789,
+       0.        ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>{% include warning.html content='A mesh needs to be passed when using <a href="/statFEM/oneDim.html#MyExpression"><code>MyExpression</code></a> objects with certain FEniCS methods' %}</p>
+
+</div>
+</div>
+</div>
 </div>
  
 
