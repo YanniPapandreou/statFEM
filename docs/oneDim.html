@@ -88,7 +88,7 @@ $$ l_f = 0.4 $$
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Difference-between-true-mean-and-FEM-mean">Difference between true mean and FEM mean<a class="anchor-link" href="#Difference-between-true-mean-and-FEM-mean"> </a></h2><p>Since the mean of $f$ is $\bar{f}(x)=1$ we have that the true mean of the solution $u$ is the solution of the ODE with forcing term set to the constant function 1. This has the exact analytic solution:</p>
+<h2 id="Difference-between-true-prior-mean-and-statFEM-prior-mean">Difference between true prior mean and statFEM prior mean<a class="anchor-link" href="#Difference-between-true-prior-mean-and-statFEM-prior-mean"> </a></h2><p>Since the mean of $f$ is $\bar{f}(x)=1$ we have that the true mean of the solution $u$ is the solution of the ODE with forcing term set to the constant function 1. This has the exact analytic solution:</p>
 <p>{% raw %}
 $$u(x)=\frac{1}{2}x(1-x)$$
 {% endraw %}</p>
@@ -246,7 +246,7 @@ ${w_h^9}$
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Difference-between-true-covariance-and-FEM-covariance">Difference between true covariance and FEM covariance<a class="anchor-link" href="#Difference-between-true-covariance-and-FEM-covariance"> </a></h2><p>The solution $u$ has covariance function $c_u(x,y)$ given by the following expression:</p>
+<h2 id="Difference-between-true-prior-covariance-and-statFEM-prior-covariance">Difference between true prior covariance and statFEM prior covariance<a class="anchor-link" href="#Difference-between-true-prior-covariance-and-statFEM-prior-covariance"> </a></h2><p>The solution $u$ has covariance function $c_u(x,y)$ given by the following expression:</p>
 <p>{% raw %}
 $$c_u(x,y)=\int_{0}^{1}\int_{0}^{1}G(x,w)c_f(w,t)G(t,y)dtdw$$
 {% endraw %}</p>
@@ -647,6 +647,139 @@ $$\Sigma_2=\boldsymbol{\Phi}^{T}B\boldsymbol{\Phi}$$
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Posterior-from-incorporating-sensor-readings">Posterior from incorporating sensor readings<a class="anchor-link" href="#Posterior-from-incorporating-sensor-readings"> </a></h2><p>Denote by $\nu_{i}=\mathcal{N}(m_{i},\Sigma_{i})$, $i=1,2$, the true and statFEM prior respectively. When we take $u\sim\nu_{i}$ as our prior, the resulting posterior after incorporating the noisy sensor readings $\mathbf{v}$ at the locations $\{y_{j}\}_{j=1}^{s}$ is given by:</p>
+<p>{% raw %}
+$$u|\mathbf{v}\sim\mathcal{N}\left(m_{u|\mathbf{v}}^{(i)},\Sigma_{u|\mathbf{v}}^{(i)}\right)$$
+{% endraw %}</p>
+<p>where for $i=1,2$, we have:</p>
+<p>{% raw %}
+$$m_{u|\mathbf{v}}^{(i)}=m_{i} + \Sigma_{i}S^{\dagger}(\epsilon^{2}I+S\Sigma_{i}S^{\dagger})^{-1}(\mathbf{v}-Sm_{i})$$
+{% endraw %}</p>
+<p>{% raw %}
+$$\Sigma_{u|\mathbf{v}}^{(i)}=\Sigma_{i} - \Sigma_{i}S^{\dagger}(\epsilon^{2}I+S\Sigma_{i}S^{\dagger})^{-1}S\Sigma_{i}$$
+{% endraw %}</p>
+<p>where $S$ is the operator which maps a function $g$ to the vector $\left(g(y_1),\cdots,g(y_s)\right)^{T}$.</p>
+<p>For brevity we will denote the $s\times s$ matrix which appears above as $B_{\epsilon,i}:=\epsilon^{2}I+S\Sigma_{i}S^{\dagger}=\epsilon^{2}I+C_{Y,i}$ where we have also defined $C_{Y,i}:=S\Sigma_{i}S^{\dagger}$. This matrix has $pq$<em>-th</em> entry $c^{(i)}(y_{p},y_{q})$ where $c^{(i)}$ is the covariance function associated with the covariance operator $\Sigma_{i}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Posterior-mean">Posterior mean<a class="anchor-link" href="#Posterior-mean"> </a></h3><p>Thus, our posterior mean in both cases has the form:</p>
+<p>{% raw %}
+$$m^{(i)}_{u|\mathbf{v}}(x)=m_{i}(x)+\sum_{p,q=1}^{s}c(x,y_{p})\left(B_{\epsilon,i}^{-1}\right)_{pq}(v_{q}-m_{i}(y_{q})$$
+{% endraw %}</p>
+<p>Note that this can be expressed as:</p>
+<p>{% raw %}
+$$m^{(i)}_{u|\mathbf{v}}(x)=m_{i}(x) - \mathbf{c}^{(i)}(x)^{T}B_{\epsilon,i}^{-1}(\mathbf{m}^{(i)}-\mathbf{v})$$
+{% endraw %}</p>
+<p>where $\mathbf{m}^{(i)}:=Sm_{i}=(m(y_1),\cdots,m(y_s))^{T}$ and $\mathbf{c}^{(i)}(x):=(c^{(i)}(x,y_1),\cdots,c^{(i)}(x,y_s))^{T}$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Thus, we require a function to evaluate the posterior means. We will thus create a function <a href="/statFEM/oneDim.html#m_post"><code>m_post</code></a> which evaluates the posterior mean.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="m_post" class="doc_header"><code>m_post</code><a href="https://github.com/YanniPapandreou/statFEM/tree/master/statFEM/oneDim.py#L193" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>m_post</code>(<strong><code>x</code></strong>, <strong><code>m</code></strong>, <strong><code>c</code></strong>, <strong><code>v</code></strong>, <strong><code>Y</code></strong>, <strong><code>B</code></strong>)</p>
+</blockquote>
+<p>This function evalutes the posterior mean at the point x.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/statFEM/oneDim.html#m_post"><code>m_post</code></a> takes in several arguments which are explained below:</p>
+<ul>
+<li><code>x</code>: point where the posterior mean will be evaluated</li>
+<li><code>m</code>: function which computes the prior mean at a given point y</li>
+<li><code>c</code>: function which returns the vector (c(x,y)) for y in Y (note: c is the prior covariance function)</li>
+<li><code>v</code>: vector of noisy sensor readings</li>
+<li><code>Y</code>: vector of sensor locations</li>
+<li><code>B</code>: the matrix $\epsilon^{2}I+C_Y$ to be inverted in order to obtain the posterior</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a quick test to see if the code is working, note that if we choose $\mathbf{c}$ above to be constant at the $j$<em>-th</em> standard basis vector and if we take $B$ to be the identity matrix then we should obtain the function $m(x)-m(y_j)+v_j$. This will give us the $v_j$ when evaluated at $y_j$. We will test that this is indeed what we get:</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m_list</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">-</span><span class="n">x</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)]</span>
+
+<span class="c1"># set up Y and B and v:</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.99</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="c1"># test that we get v_j when evaluated at y_j (and when c is set to be j-th basis vector)</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="c1"># define c to be j-th basis vector for all x</span>
+    <span class="k">def</span> <span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">c_vect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">c_vect</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">return</span> <span class="n">c_vect</span>
+    
+    <span class="c1"># evaluate the posterior mean at jth sensor location and check that this is v_j</span>
+    <span class="c1"># (this check is done up to a tolerance tol)</span>
+    <span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-15</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">m_list</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">m_post</span><span class="p">(</span><span class="n">Y</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">m</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">tol</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
