@@ -11,7 +11,10 @@ index = {"mean_assembler": "00_oneDim.ipynb",
          "gen_sensor": "00_oneDim.ipynb",
          "MyExpression": "00_oneDim.ipynb",
          "fem_cov_assembler_post": "00_oneDim.ipynb",
-         "m_post_fem_assembler": "00_oneDim.ipynb"}
+         "m_post_fem_assembler": "00_oneDim.ipynb",
+         "c_post": "00_oneDim.ipynb",
+         "post_fem_cov_assembler": "00_oneDim.ipynb",
+         "c_post_fem_assembler": "00_oneDim.ipynb"}
 
 modules = ["oneDim.py"]
 
