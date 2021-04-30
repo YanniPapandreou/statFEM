@@ -12,6 +12,9 @@ entries:
     - output: web,pdf
       title: oneDim
       url: oneDim.html
+    - output: web,pdf
+      title: 1-D prior toy example
+      url: oneDim_prior_results.html
     output: web
     title: statFEM
   output: web

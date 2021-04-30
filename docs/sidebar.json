@@ -1,6 +1,7 @@
 {
   "statFEM": {
     "Overview": "/",
-    "oneDim": "oneDim.html"
+    "oneDim": "oneDim.html",
+    "1-D prior toy example": "oneDim_prior_results.html"
   }
 }
