@@ -2,21 +2,22 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"mean_assembler": "00_oneDim.ipynb",
-         "kernMat": "00_oneDim.ipynb",
-         "BigPhiMat": "00_oneDim.ipynb",
-         "cov_assembler": "00_oneDim.ipynb",
-         "m_post": "00_oneDim.ipynb",
-         "sample_gp": "00_oneDim.ipynb",
-         "gen_sensor": "00_oneDim.ipynb",
-         "MyExpression": "00_oneDim.ipynb",
-         "fem_cov_assembler_post": "00_oneDim.ipynb",
-         "m_post_fem_assembler": "00_oneDim.ipynb",
-         "c_post": "00_oneDim.ipynb",
-         "post_fem_cov_assembler": "00_oneDim.ipynb",
-         "c_post_fem_assembler": "00_oneDim.ipynb"}
+index = {"mean_assembler": "01_twoDim.ipynb",
+         "kernMat": "01_twoDim.ipynb",
+         "BigPhiMat": "01_twoDim.ipynb",
+         "cov_assembler": "01_twoDim.ipynb",
+         "m_post": "01_twoDim.ipynb",
+         "sample_gp": "01_twoDim.ipynb",
+         "gen_sensor": "01_twoDim.ipynb",
+         "MyExpression": "01_twoDim.ipynb",
+         "fem_cov_assembler_post": "01_twoDim.ipynb",
+         "m_post_fem_assembler": "01_twoDim.ipynb",
+         "c_post": "01_twoDim.ipynb",
+         "post_fem_cov_assembler": "01_twoDim.ipynb",
+         "c_post_fem_assembler": "01_twoDim.ipynb"}
 
-modules = ["oneDim.py"]
+modules = ["oneDim.py",
+           "twoDim.py"]
 
 doc_url = "https://YanniPapandreou.github.io/statFEM/"
 

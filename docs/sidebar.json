@@ -2,6 +2,7 @@
   "statFEM": {
     "Overview": "/",
     "oneDim": "oneDim.html",
+    "twoDim": "twoDim.html",
     "1-D prior toy example": "oneDim_prior_results.html"
   }
 }
