@@ -248,11 +248,11 @@ ${w_h^9}$
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Difference-between-true-prior-covariance-and-statFEM-prior-covariance">Difference between true prior covariance and statFEM prior covariance<a class="anchor-link" href="#Difference-between-true-prior-covariance-and-statFEM-prior-covariance"> </a></h2><p>The solution $u$ has covariance function $c_u(x,y)$ given by the following expression:</p>
 <p>{% raw %}
-$$c_u(x,y)=\int_{0}^{1}\int_{0}^{1}G(x,w)c_f(w,t)G(t,y)dtdw$$
+$$c_u(x,y)=\int_{0}^{1}\int_{0}^{1}G(x,w)k_f(w,t)G(t,y)dtdw$$
 {% endraw %}</p>
 <p>Where $G(x,y)$ is the Green's function for our problem:</p>
 <p>{% raw %}
-$$G(x,y) = x(1-y)\Theta(y-x) + (1-x)y\Theta(x-y) \text{      for } x,y\in[0,1]$$
+$$G(x,y) = x(1-y)\Theta(y-x) + (1-x)y\Theta(x-y) \quad \forall x,y\in[0,1]$$
 {% endraw %}</p>
 <p>(note: $\Theta(x)$ is the Heaviside Step function)</p>
 

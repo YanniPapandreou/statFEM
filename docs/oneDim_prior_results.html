@@ -29,6 +29,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this notebook we will demonstrate the error bounds for the statFEM prior for the toy example introduced in <a href="/statFEM/oneDim.html#1-dimensional-case-(ODE)"><code>oneDim</code></a>. We first import some required packages.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -36,7 +43,20 @@ nb_path: "oneDim_prior_results.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">dolfin</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="c1"># import required functions from oneDim</span>
+<span class="kn">from</span> <span class="nn">statFEM.oneDim</span> <span class="kn">import</span> <span class="n">mean_assembler</span><span class="p">,</span> <span class="n">kernMat</span><span class="p">,</span> <span class="n">cov_assembler</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">sqrtm</span>
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">sympy</span><span class="p">;</span> <span class="n">sympy</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+<span class="c1"># code for displaying matrices nicely</span>
+<span class="k">def</span> <span class="nf">display_matrix</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -48,7 +68,35 @@ nb_path: "oneDim_prior_results.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this notebook we will demonstrate the error bounds for the statFEM prior for the toy example introduced in <a href="/statFEM/oneDim.html#1-dimensional-case-(ODE)"><code>oneDim</code></a></p>
+<p>The random forcing term has the following GP distribution:</p>
+<p>{% raw %}
+$$f\sim\mathcal{GP}(\bar{f},k_{f})$$
+{% endraw %}</p>
+<p>where,</p>
+<p>{% raw %}
+$$\bar{f}(x)=1$$
+{% endraw %}
+{% raw %}
+$$k_{f}(x,y)=\sigma_{f}^{2}\exp\left(-\frac{|x-y|^{2}}{2l_{f}^{2}}\right)$$
+{% endraw %}
+{% raw %}
+$$\sigma_{f}=0.1$$
+{% endraw %}
+{% raw %}
+$$l_{f}=0.4$$
+{% endraw %}</p>
+<p>This forcing gives rise to the true solution mean and covariance functions:</p>
+<p>{% raw %}
+$$\mu_{\star}(x)=\frac{1}{2}x(1-x)$$
+{% endraw %}
+{% raw %}
+$$c_{u}(x,y)=\int_{0}^{1}\int_{0}^{1}G(x,w)k_{f}(w,t)G(t,y)dtdw$$
+{% endraw %}</p>
+<p>where $G(x,y)$ is the Green's function for our problem:</p>
+<p>{% raw %}
+$$G(x,y)=x(1-y)\Theta(y-x)+(1-x)y\Theta(x-y) \quad \forall x,y\in[0,1]$$
+{% endraw %}</p>
+<p>(note: $\Theta(x)$ is the Heaviside Step function). We now set up all these functions, noting that we use quadrature to compute $c_u$.</p>
 
 </div>
 </div>
@@ -60,24 +108,7 @@ nb_path: "oneDim_prior_results.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">statFEM.oneDim</span> <span class="kn">import</span> <span class="n">mean_assembler</span><span class="p">,</span> <span class="n">kernMat</span><span class="p">,</span> <span class="n">cov_assembler</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">μ_true</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;0.5*x[0]*(1-x[0])&#39;</span><span class="p">,</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">μ_star</span> <span class="o">=</span> <span class="n">Expression</span><span class="p">(</span><span class="s1">&#39;0.5*x[0]*(1-x[0])&#39;</span><span class="p">,</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">f_bar</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 
@@ -140,6 +171,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now set up a reference grid on which we will compare the true and statFEM covariance functions. We take a grid of length $N=51$</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -179,6 +217,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now set up a function to get the statFEM prior, for a FE mesh size $h$, using functions from <a href="/statFEM/oneDim.html#"><code>oneDim</code></a>.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -200,6 +245,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now set up a function to compare the covariance functions on the reference grid. This function computes an approximation of the covariance contribution to the 2-Wasserstein distance discussed in <a href="/statFEM/oneDim.html#Difference-between-true-prior-covariance-and-statFEM-prior-covariance"><code>oneDim</code></a>.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -224,6 +276,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With all of this in place we can now set up a function which computes an approximation of the 2-Wasserstein distance between the true and statFEM priors.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -246,6 +305,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We set up a range of $h$ values on which to compute this error.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -255,7 +321,7 @@ nb_path: "oneDim_prior_results.ipynb"
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">h_range_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">h_range</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">h_range_tmp</span><span class="p">))</span>
-<span class="n">h_range</span>
+<span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">h_range</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -270,12 +336,9 @@ nb_path: "oneDim_prior_results.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([0.25      , 0.2       , 0.16666667, 0.14285714, 0.125     ,
-       0.11111111, 0.1       , 0.09090909, 0.08333333, 0.07692308,
-       0.07142857, 0.06666667, 0.0625    , 0.05882353, 0.05555556,
-       0.05263158, 0.05      , 0.04761905, 0.04545455, 0.04347826,
-       0.04166667, 0.03846154, 0.03571429, 0.03448276, 0.03125   ,
-       0.02941176, 0.02702703, 0.02439024, 0.02222222, 0.02      ])</pre>
+<pre>array([0.25, 0.2 , 0.17, 0.14, 0.12, 0.11, 0.1 , 0.09, 0.08, 0.08, 0.07,
+       0.07, 0.06, 0.06, 0.06, 0.05, 0.05, 0.05, 0.05, 0.04, 0.04, 0.04,
+       0.04, 0.03, 0.03, 0.03, 0.03, 0.02, 0.02, 0.02])</pre>
 </div>
 
 </div>
@@ -286,6 +349,13 @@ nb_path: "oneDim_prior_results.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now compute the errors for this range of $h$.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -299,7 +369,7 @@ nb_path: "oneDim_prior_results.ipynb"
     <span class="c1"># obtain the fem prior for this value of h</span>
     <span class="n">μ</span><span class="p">,</span> <span class="n">Σ</span> <span class="o">=</span> <span class="n">fem_prior</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">f_bar</span><span class="p">,</span><span class="n">k_f</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
     <span class="c1"># compute the error between the true and fem prior</span>
-    <span class="n">error</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span><span class="n">μ_true</span><span class="p">,</span><span class="n">Σ</span><span class="p">,</span><span class="n">C_true</span><span class="p">,</span><span class="n">C_true_sqrt</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">W</span><span class="p">(</span><span class="n">μ</span><span class="p">,</span><span class="n">μ_star</span><span class="p">,</span><span class="n">Σ</span><span class="p">,</span><span class="n">C_true</span><span class="p">,</span><span class="n">C_true_sqrt</span><span class="p">)</span>
     <span class="c1"># append to errors</span>
     <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 </pre></div>
@@ -314,8 +384,8 @@ nb_path: "oneDim_prior_results.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.49 s, sys: 3.16 s, total: 4.65 s
-Wall time: 763 ms
+<pre>CPU times: user 2.72 s, sys: 6.6 s, total: 9.32 s
+Wall time: 1.44 s
 </pre>
 </div>
 </div>
@@ -326,6 +396,23 @@ Wall time: 763 ms
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now analyse the results by plotting the errors on a log-log scale and using ordinary least squares regression to estimate the slope of the line of best fit. This gives us an estimate of the rate of convergence as if we assume:</p>
+<p>{% raw %}
+$$W(\nu_{\star},\nu_{h})\leq\mathcal{O}(h^{p})\text{ as }h\rightarrow 0$$
+{% endraw %}</p>
+<p>then we have</p>
+$$W(\nu_{\star},\nu_{h})=Ch^{p}+\mathcal{O}(h^{p+1})$$<p></p>
+<p>from which it follows that:</p>
+<p>{% raw %}
+$$\log W(\nu_{\star},\nu_{h})=p\log h + \log|C| + \mathcal{O}(h)$$
+{% endraw %}</p>
+<p>and so the slope is the rate of convergence $p$. Our theory gives us $p=2$ and so we should expect to obtain a slope of $2$.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -401,6 +488,13 @@ Wall time: 763 ms
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see from the results above that we indeed obtain a slope of $p=2$ for this example.</p>
+
+</div>
+</div>
+</div>
 </div>
  
 
