@@ -21,6 +21,9 @@ entries:
     - output: web,pdf
       title: 1-D posterior toy example
       url: oneDim_posterior_results.html
+    - output: web,pdf
+      title: 2-D prior toy example
+      url: twoDim_prior_results.html
     output: web
     title: statFEM
   output: web
