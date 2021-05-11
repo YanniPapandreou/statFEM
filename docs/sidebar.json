@@ -5,6 +5,7 @@
     "twoDim": "twoDim.html",
     "1-D prior toy example": "oneDim_prior_results.html",
     "1-D posterior toy example": "oneDim_posterior_results.html",
-    "2-D prior toy example": "twoDim_prior_results.html"
+    "2-D prior toy example": "twoDim_prior_results.html",
+    "2-D posterior toy example": "twoDim_posterior_results.html"
   }
 }

@@ -516,7 +516,7 @@ def post_fem_cov_assembler(J,k_f,grid,Y,parallel,translation_inv):
 def c_post_fem_assembler(J,k_f,grid,Y,ϵ,par,trans):
     "Function to assemble the statFEM posterior cov mat on a reference grid specified by grid."
     # use post_fem_cov_assembler to get the sigma matrices needed for posterior cov mat
-    Σ_Y, Σ_X, Σ_XY = post_fem_cov_assembler(J,k_f,grid,Y,parallel=par,translation_inv=trans,tol=tol)
+    Σ_Y, Σ_X, Σ_XY = post_fem_cov_assembler(J,k_f,grid,Y,parallel=par,translation_inv=trans)
 
     # create the matrix B (store in Σ_Y for memory efficiency)
     s = len(Y) # number of sensor points
