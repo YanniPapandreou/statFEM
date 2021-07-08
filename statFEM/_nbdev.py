@@ -14,10 +14,12 @@ index = {"mean_assembler": "01_twoDim.ipynb",
          "m_post_fem_assembler": "01_twoDim.ipynb",
          "c_post": "01_twoDim.ipynb",
          "post_fem_cov_assembler": "01_twoDim.ipynb",
-         "c_post_fem_assembler": "01_twoDim.ipynb"}
+         "c_post_fem_assembler": "01_twoDim.ipynb",
+         "wass": "06_maxDist.ipynb"}
 
 modules = ["oneDim.py",
-           "twoDim.py"]
+           "twoDim.py",
+           "maxDist.py"]
 
 doc_url = "https://YanniPapandreou.github.io/statFEM/"
 

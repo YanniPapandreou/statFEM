@@ -28,8 +28,11 @@ entries:
       title: 2-D posterior toy example
       url: twoDim_posterior_results.html
     - output: web,pdf
-      title: Distribution of maximum
+      title: maxDist
       url: maxDist.html
+    - output: web,pdf
+      title: Distribution of maximum for 1-D prior example
+      url: oneDim_prior_max_results.html
     output: web
     title: statFEM
   output: web

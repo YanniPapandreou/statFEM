@@ -7,6 +7,7 @@
     "1-D posterior toy example": "oneDim_posterior_results.html",
     "2-D prior toy example": "twoDim_prior_results.html",
     "2-D posterior toy example": "twoDim_posterior_results.html",
-    "Distribution of maximum": "maxDist.html"
+    "maxDist": "maxDist.html",
+    "Distribution of maximum for 1-D prior example": "oneDim_prior_max_results.html"
   }
 }
