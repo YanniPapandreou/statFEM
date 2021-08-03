@@ -51,7 +51,7 @@ def mean_assembler(h,f_bar):
 
 # Cell
 def kernMat(k,grid,parallel=True,translation_inv=False):
-    "Function to compute the covariance matrix K corresponding to the covariance kernel k on a grid. This matrix has ijth entry K_ij=k(x_i,x_j) where x_i is the ith point of the grid."
+    "Function to compute the covariance matrix $K$ corresponding to the covariance kernel $k$ on a grid. This matrix has $ij-$th entry $K_{ij}=k(x_i,x_j)$ where $x_i$ is the $i$-th point of the grid."
     # get the length of the grid
     n = len(grid)
     # preallocate an n x n array of zeros to hold the cov matrix
@@ -96,7 +96,7 @@ def kernMat(k,grid,parallel=True,translation_inv=False):
 
 # Cell
 def BigPhiMat(J,grid):
-    "Function to compute the Phi matrix."
+    "Function to compute the $\Phi$ matrix."
     # create the FE mesh and function space
     mesh = UnitIntervalMesh(J)
     V = FunctionSpace(mesh,'Lagrange',1)
@@ -194,7 +194,7 @@ def cov_assembler(J,k_f,grid,parallel,translation_inv):
 
 # Cell
 def m_post(x,m,c,v,Y,B):
-    "This function evalutes the posterior mean at the point x."
+    "This function evalutes the posterior mean at the point $x$."
     m_vect = np.array([m(y_i) for y_i in Y]).flatten()
     c_vect = c(x).flatten()
 
@@ -206,7 +206,7 @@ def m_post(x,m,c,v,Y,B):
 
 # Cell
 def sample_gp(n_sim,m,k,grid,par=False,trans=True, tol=1e-9):
-    "Function to sample a GP with mean m and cov k on a grid."
+    "Function to sample a GP with mean $m$ and cov $k$ on a grid."
     # get length of grid
     d = len(grid)
 
@@ -269,7 +269,7 @@ class MyExpression(UserExpression):
 
 # Cell
 def fem_cov_assembler_post(J,k_f,Y,parallel,translation_inv):
-    "Function to create the matrix C_{Y,h} and the vector function c^{(h)} required for the statFEM posterior mean."
+    "Function to create the matrix $C_{Y,h}$ and the vector function $c^{(h)}$ required for the statFEM posterior mean."
 
     # set up mesh and function space
     mesh = UnitIntervalMesh(J)
@@ -399,7 +399,7 @@ def m_post_fem_assembler(J,f_bar,k_f,ϵ,Y,v_dat,par=False,trans=True):
 
 # Cell
 def c_post(x,y,c,Y,B):
-    "This function evaluates the posterior covariance at (x,y)"
+    "This function evaluates the posterior covariance at $(x,y)$"
     # compute vectors c_x and c_y:
     c_x = np.array([c(x,y_i) for y_i in Y])
     c_y = np.array([c(y_i,y) for y_i in Y])
@@ -412,7 +412,7 @@ def c_post(x,y,c,Y,B):
 
 # Cell
 def post_fem_cov_assembler(J,k_f,grid,Y,parallel,translation_inv):
-    "Function which assembles the matrices Σ_X,Σ_XY, and Σ_Y required for the statFEM posterior covariance."
+    "Function which assembles the matrices $Σ_X,Σ_{XY}$, and $Σ_Y$ required for the statFEM posterior covariance."
 
     # set up mesh and function space
     mesh = UnitIntervalMesh(J)

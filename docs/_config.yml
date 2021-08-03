@@ -2,7 +2,7 @@ repository: YanniPapandreou/statFEM
 output: web
 topnav_title: statFEM
 site_title: statFEM
-company_name: Yanni, inc.
+company_name: 
 description: Project code for error analysis of statFEM method
 # Set to false to disable KaTeX math
 use_math: true
