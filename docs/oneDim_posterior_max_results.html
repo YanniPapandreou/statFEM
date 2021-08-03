@@ -949,7 +949,7 @@ Wall time: 2.29 s
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see from the above plot that the slope is around $1$ - this differs from our theory showing the results for the $\max$ are out of the remit of our theory.</p>
+<p>We can see from the above plot that the slope is around $1.42$ - this differs from our theory showing the results for the $\max$ are out of the remit of our theory.</p>
 
 </div>
 </div>
@@ -1105,6 +1105,13 @@ Wall time: 17min 48s
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see from these results that for we obtain different results for the rates. In particular, we observe the rate increasing from $1.3$ when $\epsilon=0.01$ up to around $2.2$ when $\epsilon$ decreases to $0.0001$. Thus, for small values of sensor noise we obtain rates similar to the case of linear quantities of interest. This is potentially do to the fact that for small levels of sensor noise the posterior trajectories concentrate and so the maximum is almost always located at the maximum of the true prior mean. Thus, we come to the regime where taking the maximum is the same as point evaluation, which is a linear functional.</p>
+
+</div>
+</div>
+</div>
 </div>
  
 

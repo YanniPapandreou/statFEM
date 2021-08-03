@@ -1597,7 +1597,7 @@ $$\tilde{C}_{X,h} = \Sigma_{X} - \Sigma_{XY}B_{\epsilon,h}^{-1}\Sigma_{XY}^{T}$$
 <span class="c1"># get statFEM prior cov mat on this grid</span>
 <span class="n">Σ_prior</span> <span class="o">=</span> <span class="n">cov_assembler</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">k_f</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># get statFEM posterio cov mat on this grid</span>
+<span class="c1"># get statFEM posterior cov mat on this grid</span>
 <span class="n">Σ_posterior</span> <span class="o">=</span> <span class="n">c_post_fem_assembler</span><span class="p">(</span><span class="n">J</span><span class="p">,</span><span class="n">k_f</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">ϵ</span><span class="p">,</span><span class="kc">False</span><span class="p">,</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
