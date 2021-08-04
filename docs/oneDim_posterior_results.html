@@ -439,23 +439,6 @@ nb_path: "03_oneDim_posterior_results.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">h_range_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.025</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">h_range</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">h_range_tmp</span><span class="p">))</span>
-<span class="c1"># print h_range to 2 decimal places</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;h values: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">h_range</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="c1"># noise levels to use</span>
-<span class="n">ϵ_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0001</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0001</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ϵ values: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ϵ_list</span><span class="p">))</span>
-<span class="n">J_norm</span> <span class="o">=</span> <span class="mi">40</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 <div class="output_wrapper">
 <div class="output">
