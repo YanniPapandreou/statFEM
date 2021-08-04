@@ -61,7 +61,7 @@ nb_path: "08_oneDim_posterior_max_results.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will be interested in the toy example introduced in <a href="/statFEM/oneDim.html#1-dimensional-case-(ODE)"><code>oneDim</code></a>. To obtain a sample for the maximum from the true posterior we must first sample trajectories from the true posterior.</p>
+<p>We will be interested in the toy example introduced in <a href="/statFEM/oneDim.html#1-dimensional-case-(ODE)"><code>oneDim</code></a>, however we will use different values for the parameters in the distribution of $f$.. To obtain a sample for the maximum from the true posterior we must first sample trajectories from the true posterior.</p>
 
 </div>
 </div>
@@ -75,7 +75,6 @@ nb_path: "08_oneDim_posterior_max_results.ipynb"
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">l_f</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">σ_f</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="c1">#σ_f = 10.0</span>
 
 <span class="k">def</span> <span class="nf">m_f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="mf">1.0</span>
@@ -195,7 +194,7 @@ nb_path: "08_oneDim_posterior_max_results.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of sensors</span>
-<span class="c1"># create sensor grid (???do we need to reverse???)</span>
+<span class="c1"># create sensor grid</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.99</span><span class="p">,</span><span class="n">s</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
 <span class="c1"># get true prior covariance on sensor grid</span>
 <span class="n">C_true_s</span> <span class="o">=</span> <span class="n">kernMat</span><span class="p">(</span><span class="n">c_u</span><span class="p">,</span><span class="n">Y</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
@@ -394,8 +393,7 @@ nb_path: "08_oneDim_posterior_max_results.ipynb"
 <span class="c1"># set up true posterior mean</span>
 <span class="k">def</span> <span class="nf">true_mean</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">m_post</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">μ_true</span><span class="p">,</span><span class="n">c_u_vect</span><span class="p">,</span><span class="n">v_dat</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">B_true</span><span class="p">)</span>
-<span class="c1"># μ_true_s = MyExpression()</span>
-<span class="c1"># μ_true_s.f = true_mean</span>
+
 <span class="c1"># set up true posterior covariance</span>
 <span class="k">def</span> <span class="nf">c_post_true</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">c_post</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">c_u</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">B_true</span><span class="p">)</span>
