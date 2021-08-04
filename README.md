@@ -1,3 +1,5 @@
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://yannipapandreou.github.io/statFEM/)
+
 # statFEM
 > Code for the numerical experiments demonstrating our error analysis of the statFEM method.
 
