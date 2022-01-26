@@ -18,4 +18,4 @@ This repo contains code accompanying our error analysis of the Statistical Finit
     Applied Mechanics and Engineering*, Volume 375, 2021, 113533,
     https://doi.org/10.1016/j.cma.2020.113533.
 
-[2] Papandreou, Yanni, Jon Cockayne, Mark Girolami, and Andrew B. Duncan. "Theoretical Guarantees for the Statistical Finite Element Method." arXiv preprint arXiv:2111.07691 (2021), https://arxiv.org/abs/2111.07691.
+[2] Yanni Papandreou, Jon Cockayne, Mark Girolami, and Andrew B. Duncan. "Theoretical Guarantees for the Statistical Finite Element Method." arXiv preprint arXiv:2111.07691 (2021), https://arxiv.org/abs/2111.07691.
