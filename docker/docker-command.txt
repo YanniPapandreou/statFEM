@@ -1,0 +1,1 @@
+docker run --name statfem-lab -w /home/fenics -v $(pwd):/home/fenics/shared -p 8888:8888 quay.io/yannipapandreou/statfem-image:latest
