@@ -1,3 +1,5 @@
+## :warning: **YanniPapandreou/statFEM is the older version of this project. Please see the following [repo](https://github.com/YanniPapandreou/statFEM_analysis) instead.**  
+
 # statFEM
 > Code for the numerical experiments demonstrating our error analysis of the statFEM method.
 
